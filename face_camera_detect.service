@@ -1,0 +1,17 @@
+[Unit]
+Description=AIY Capture Face Still Image
+Requires=dev-vision_spicomm.device
+After=dev-vision_spicomm.device
+Wants=aiy-board-info.service
+After=aiy-board-info.service
+
+[Service]
+Type=simple
+Restart=no
+User=pi
+Environment=AIY_BOARD_NAME=AIY-Board
+EnvironmentFile=-/run/aiy-board-info
+ExecStart=/usr/bin/python3 /home/pi/Python/face_camera_detect.py
+
+[Install]
+WantedBy=multi-user.target
